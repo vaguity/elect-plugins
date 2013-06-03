@@ -7,9 +7,7 @@
  * Author URI: http://sean-connolly.com/
  */
 
-
 add_action( 'widgets_init', 'cta_widget' );
-
 
 function cta_widget() {
 	register_widget( 'CTA_Widget' );
@@ -64,13 +62,13 @@ class CTA_Widget extends WP_Widget {
 		$defaults = array( 'title' => __('', 'cta'), 'content' => __('', 'cta') );
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
-		<!-- Widget Title: Text Input. -->
+		<!-- Title: Text input. -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'cta'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $instance['title']; ?>">
 		</p>
 
-		<!-- Content: textarea input. -->
+		<!-- Content: Textarea input. -->
 		<p>
 			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>"><?php echo $instance['content']; ?></textarea>
 		</p>
