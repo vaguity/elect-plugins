@@ -22,7 +22,7 @@ class Newsletter_Widget extends WP_Widget {
 		
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'newsletter-widget' );
 		
-		$this->WP_Widget( 'newsletter-widget', __('Newsletter Widget', 'newsletter'), $widget_ops, $control_ops );
+		$this->WP_Widget( 'newsletter-widget', __('Elect — Newsletter Widget', 'newsletter'), $widget_ops, $control_ops );
 	}
 	
 	function widget( $args, $instance ) {

@@ -22,7 +22,7 @@ class Donation_Widget extends WP_Widget {
 		
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'donation-widget' );
 		
-		$this->WP_Widget( 'donation-widget', __('Donation Widget', 'donation'), $widget_ops, $control_ops );
+		$this->WP_Widget( 'donation-widget', __('Elect — Donation Widget', 'donation'), $widget_ops, $control_ops );
 	}
 	
 	function widget( $args, $instance ) {
