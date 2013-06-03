@@ -7,9 +7,7 @@
  * Author URI: http://sean-connolly.com/
  */
 
-
 add_action( 'widgets_init', 'newsletter_widget' );
-
 
 function newsletter_widget() {
 	register_widget( 'Newsletter_Widget' );
@@ -30,8 +28,8 @@ class Newsletter_Widget extends WP_Widget {
 
 		// Our variables from the widget settings.
 		$title = apply_filters('widget_title', $instance['title'] );
-		$name = $instance['name'];
-		$show_info = isset( $instance['show_info'] ) ? $instance['show_info'] : false;
+		$content = $instance['content'];
+		$url = $instance['url'];
 
 		echo $before_widget;
 
@@ -39,55 +37,49 @@ class Newsletter_Widget extends WP_Widget {
 		if ( $title )
 			echo $before_title . $title . $after_title;
 
-		// Display the name 
-		if ( $name )
-			printf( '<p>' . __('Hey their Sailor! My name is %1$s.', 'newsletter') . '</p>', $name );
+		if ( $content )
+			echo nl2br( $content );
 
-		
-		if ( $show_info )
-			printf( $name );
+		if ( $url )
+			echo '<p><a href="' . $url . '">Sign up for my newsletter</a></p>';
 
-		
 		echo $after_widget;
 	}
 
-	//Update the widget 
+	// Update the widget 
 	 
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		//Strip tags from title and name to remove HTML 
+		// Strip tags from title and name to remove HTML 
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['name'] = strip_tags( $new_instance['name'] );
-		$instance['show_info'] = $new_instance['show_info'];
+		$instance['content'] = $new_instance['content'];
+		$instance['url'] = strip_tags( $new_instance['url'] );
 
 		return $instance;
 	}
-
 	
 	function form( $instance ) {
 
 		// Set up some default widget settings.
-		$defaults = array( 'title' => __('Newsletter', 'newsletter'), 'name' => __('Bilal Shaheen', 'newsletter'), 'show_info' => true );
+		$defaults = array( 'title' => __('', 'newsletter'), 'url' => __('', 'newsletter'), 'content' => __('', 'newsletter') );
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
-		<!-- Widget Title: Text Input. -->
+		<!-- Title: Text input. -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'newsletter'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $instance['title']; ?>">
 		</p>
 
-		<!-- Text Input. -->
+		<!-- Content: Textarea input. -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e('Your Name:', 'newsletter'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'name' ); ?>" name="<?php echo $this->get_field_name( 'name' ); ?>" value="<?php echo $instance['name']; ?>" style="width:100%;" />
+			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>"><?php echo $instance['content']; ?></textarea>
 		</p>
 
-		
-		<!-- Checkbox. -->
+		<!-- URL: Text input. -->
 		<p>
-			<input class="checkbox" type="checkbox" <?php checked( $instance['show_info'], true ); ?> id="<?php echo $this->get_field_id( 'show_info' ); ?>" name="<?php echo $this->get_field_name( 'show_info' ); ?>" /> 
-			<label for="<?php echo $this->get_field_id( 'show_info' ); ?>"><?php _e('Display info publicly?', 'newsletter'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php _e('URL:', 'newsletter'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'url' ); ?>" name="<?php echo $this->get_field_name( 'url' ); ?>" type="text" value="<?php echo $instance['url']; ?>">
 		</p>
 
 	<?php

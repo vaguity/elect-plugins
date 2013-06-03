@@ -54,7 +54,6 @@ class CTA_Widget extends WP_Widget {
 
 		return $instance;
 	}
-
 	
 	function form( $instance ) {
 

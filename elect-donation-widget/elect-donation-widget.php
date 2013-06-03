@@ -58,7 +58,6 @@ class Donation_Widget extends WP_Widget {
 
 		return $instance;
 	}
-
 	
 	function form( $instance ) {
 
@@ -71,8 +70,6 @@ class Donation_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'donation'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $instance['title']; ?>">
 		</p>
-
-<!-- fields: donate URL, donate text, title -->
 
 		<!-- Content: Textarea input. -->
 		<p>
