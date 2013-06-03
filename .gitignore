@@ -1,0 +1,7 @@
+# Ignore everything
+*
+
+# Except elect- folders and sub-folders
+!.gitignore
+!/elect-*
+!/elect-*/*
