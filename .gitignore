@@ -3,5 +3,6 @@
 
 # Except elect- folders and sub-folders
 !.gitignore
+!readme.md
 !/elect-*
 !/elect-*/*
