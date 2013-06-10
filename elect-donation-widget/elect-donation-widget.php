@@ -31,19 +31,19 @@ class Donation_Widget extends WP_Widget {
 		$content = $instance['content'];
 		$url = $instance['url'];
 
-		echo $before_widget;
+		echo '<div class="elect-donate-widget">' . $before_widget;
 
 		// Display the widget title 
 		if ( $title )
 			echo $before_title . $title . $after_title;
 
 		if ( $content )
-			echo nl2br( $content );
+			echo wpautop( $content, true );
 
 		if ( $url )
-			echo '<p><a href="' . $url . '">Donate</a></p>';
+			echo '<p class="elect-donate-jump"><a href="' . $url . '">Donate</a></p>';
 
-		echo $after_widget;
+		echo $after_widget . '</div><!-- .elect-donate-widget -->';
 	}
 
 	// Update the widget 

@@ -30,7 +30,7 @@ class CTA_Widget extends WP_Widget {
 		$title = apply_filters('widget_title', $instance['title'] );
 		$content = $instance['content'];
 
-		echo $before_widget;
+		echo '<div class="elect-cta-widget">' . $before_widget;
 
 		// Display the widget title 
 		if ( $title )
@@ -38,9 +38,9 @@ class CTA_Widget extends WP_Widget {
 		
 		// Display the content
 		if ( $content )
-			echo nl2br( $content ) ;
+			echo wpautop( $content, true ) ;
 		
-		echo $after_widget;
+		echo $after_widget . '</div><!-- .elect-cta-widget -->';
 	}
 
 	// Update the widget 

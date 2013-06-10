@@ -31,19 +31,19 @@ class Newsletter_Widget extends WP_Widget {
 		$content = $instance['content'];
 		$url = $instance['url'];
 
-		echo $before_widget;
+		echo '<div class="elect-newsletter-widget">' . $before_widget;
 
 		// Display the widget title 
 		if ( $title )
 			echo $before_title . $title . $after_title;
 
 		if ( $content )
-			echo nl2br( $content );
+			echo wpautop( $content, true );
 
 		if ( $url )
-			echo '<p><a href="' . $url . '">Sign up for my newsletter</a></p>';
+			echo '<p class="elect-newsletter-jump"><a href="' . $url . '">Subscribe</a></p>';
 
-		echo $after_widget;
+		echo $after_widget . '</div><!-- .elect-newsletter-widget -->';
 	}
 
 	// Update the widget 
