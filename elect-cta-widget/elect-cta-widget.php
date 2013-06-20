@@ -71,6 +71,7 @@ class CTA_Widget extends WP_Widget {
 		<p>
 			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>"><?php echo $instance['content']; ?></textarea>
 		</p>
+		<p><em>Add the class "elect-cta-jump" to any links that should be a button.</em></p>
 
 	<?php
 	}

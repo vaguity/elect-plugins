@@ -30,18 +30,24 @@ class Donation_Widget extends WP_Widget {
 		$title = apply_filters('widget_title', $instance['title'] );
 		$content = $instance['content'];
 		$url = $instance['url'];
+		$button = $instance['button'];
 
 		echo '<div class="elect-donate-widget">' . $before_widget;
 
 		// Display the widget title 
-		if ( $title )
+		if ($title)
 			echo $before_title . $title . $after_title;
 
-		if ( $content )
+		if ($content)
 			echo wpautop( $content, true );
 
-		if ( $url )
-			echo '<p class="elect-donate-jump"><a href="' . $url . '">Donate</a></p>';
+		if ($url)
+			if ($button) {
+				echo '<p class="elect-donate-jump"><a href="' . $url . '">' . $button . '</a></p>';
+			}
+			else {
+				echo '<p class="elect-donate-jump"><a href="' . $url . '">Donate</a></p>';
+			};
 
 		echo $after_widget . '</div><!-- .elect-donate-widget -->';
 	}
@@ -55,6 +61,7 @@ class Donation_Widget extends WP_Widget {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['content'] = $new_instance['content'];
 		$instance['url'] = strip_tags( $new_instance['url'] );
+		$instance['button'] = strip_tags( $new_instance['button'] );
 
 		return $instance;
 	}
@@ -62,7 +69,7 @@ class Donation_Widget extends WP_Widget {
 	function form( $instance ) {
 
 		// Set up some default widget settings.
-		$defaults = array( 'title' => __('', 'donation'), 'url' => __('', 'donation'), 'content' => __('', 'donation') );
+		$defaults = array( 'title' => __('', 'donation'), 'url' => __('', 'donation'), 'content' => __('', 'donation'), 'button' => __('', 'button') );
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
 		<!-- Title: Text input. -->
@@ -74,6 +81,12 @@ class Donation_Widget extends WP_Widget {
 		<!-- Content: Textarea input. -->
 		<p>
 			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>"><?php echo $instance['content']; ?></textarea>
+		</p>
+
+		<!-- Button title: Text input. -->
+		<p>
+			<label for="<?php echo $this->get_field_id( 'button' ); ?>"><?php _e('Button Title:', 'newsletter'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'button' ); ?>" name="<?php echo $this->get_field_name( 'button' ); ?>" type="text" value="<?php echo $instance['button']; ?>">
 		</p>
 
 		<!-- URL: Text input. -->
